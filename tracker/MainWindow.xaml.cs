@@ -38,37 +38,6 @@ namespace tracker
             this.Close();
         }
 
-        //private void MenuMagic_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //            FireSpell.Visibility = Visibility.Hidden;
-        //            BlizzardSpell.Visibility = Visibility.Hidden;
-        //            ThunderSpell.Visibility = Visibility.Hidden;
-        //            CureSpell.Visibility = Visibility.Hidden;
-        //            ReflectSpell.Visibility = Visibility.Hidden;
-        //            MagnetSpell.Visibility = Visibility.Hidden;
-        //            Fire.Visibility = Visibility.Hidden;
-        //            Blizzard.Visibility = Visibility.Hidden;
-        //            Thunder.Visibility = Visibility.Hidden;
-        //            Cure.Visibility = Visibility.Hidden;
-        //            Reflect.Visibility = Visibility.Hidden;
-        //            Magnet.Visibility = Visibility.Hidden;
-            
-        //}
-
-        //private void OlympusCups_Click(object sender, RoutedEventArgs e)
-        //{
-        //    PainCup.Visibility = Visibility.Hidden;
-        //    CerbCup.Visibility = Visibility.Hidden;
-        //    TitanCup.Visibility = Visibility.Hidden;
-        //    GoddessCup.Visibility = Visibility.Hidden;
-        //}
-
-        //private void MenuAS_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
         private void MenuAbout_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Author: Jsmartee" + "\n" + "Images from khwiki.com and khinsider.com", "KH2FM Item Tracker v1.0");
