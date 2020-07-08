@@ -5,7 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tracker"
         mc:Ignorable="d"
-        Title="KH2FM Item Tracker" Height="280" Width="350" Icon="./Resources/Images/crown_3.png" Background="#FF202020" BorderBrush="White">
+        Title="KH2FM Item Tracker" Height="320" Width="350" Icon="./Resources/Images/crown_3.png" Background="#FF202020" BorderBrush="White"
+        Foreground="White">
+
+    <Window.Resources>
+        <Style TargetType="Image">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <EventSetter Event="MouseLeftButtonDown" Handler="CheckItem"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="UncheckItem"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Crown">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="40" />
+            <EventSetter Event="MouseLeftButtonDown" Handler="CrownLeftClick"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="CrownRightClick"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Dream">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="30" />
+            <EventSetter Event="MouseLeftButtonDown" Handler="DreamLeftClick"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="DreamRightClick"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Counter">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="40" />
+            <EventSetter Event="MouseLeftButtonDown" Handler="CountUp"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="CountDown"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="StillImage">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="40" />
+        </Style>
+
+        <Style TargetType="Image" x:Key="Keyhole">
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Tag" Value="Keyhole"/>
+            <EventSetter Event="MouseLeftButtonDown" Handler="CheckItem"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="UncheckItem"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="DriveIamge">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <EventSetter Event="MouseLeftButtonDown" Handler="DriveLevelUp"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="DriveLevelDown"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="MagicImage">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <EventSetter Event="MouseLeftButtonDown" Handler="CycleMagicLeftClick"/>
+            <EventSetter Event="MouseRightButtonDown" Handler="CycleMagicRightClick"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextCounter">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -13,342 +82,306 @@
                 <MenuItem x:Name="MenuReset" Header="Restart" Click="MenuReset_Click"></MenuItem>
                 <MenuItem x:Name="MenuExit" Header="Exit" Click="MenuExit_Click"></MenuItem>
             </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem x:Name="MenuExtended" Header="Extended" Click="MenuExtended_Click"></MenuItem>
+                <MenuItem x:Name="ASData" Header="AS and Data Org" Click="MenuASData_Click"></MenuItem>
+            </MenuItem>
             <MenuItem Header="About">
                 <MenuItem x:Name="MenuAbout" Header="Info" Click="MenuAbout_Click"></MenuItem>
             </MenuItem>
         </Menu>
 
         <Grid>
-            
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="10" />
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
 
             <!-- Row 1 -->
-            
+
             <!-- Crown -->
-            <Image Grid.Row="1" Grid.Column="1" Source="./Resources/Images/crown_0.png"
-                   Height="40" Width="40"
-                   MouseLeftButtonDown="CrownLeftClick" MouseRightButtonDown="CrownRightClick"/>
+            <Image Grid.Row="1" Grid.Column="2" Source="./Resources/Images/crown_0.png"
+                   Style="{StaticResource Crown}" ToolTip="Crown"/>
 
             <!-- Proof of Peace -->
-            <Image Grid.Row="1" Grid.Column="2" Source="./Resources/Images/ProofPeace_0.png"
-                   Height="40" Width="40" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+            <Image Grid.Row="1" Grid.Column="3" Source="./Resources/Images/ProofPeace_0.png"
+                   ToolTip="Proof of Peace"/>
 
             <!-- Proof of Nonexistence -->
-            <Image Grid.Row="1" Grid.Column="3" Source="./Resources/Images/ProofNonexistence_0.png"
-                   Height="40" Width="40" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+            <Image Grid.Row="1" Grid.Column="4" Source="./Resources/Images/ProofNonexistence_0.png"
+                   ToolTip="Proof of Nonexistence"/>
 
             <!-- Proof of Connection -->
-            <Image Grid.Row="1" Grid.Column="4" Source="./Resources/Images/ProofConnection_0.png"
-                   Height="40" Width="40" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+            <Image Grid.Row="1" Grid.Column="5" Source="./Resources/Images/ProofConnection_0.png"
+                   ToolTip="Proof of Connection"/>
 
             <!-- Promise Charm -->
-            <Image Grid.Row="1" Grid.Column="5" Source="./Resources/Images/Charm_0.png"
-                   Height="40" Width="40" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+            <Image Grid.Row="1" Grid.Column="6" Source="./Resources/Images/Charm_0.png"
+                   ToolTip="Promise Charm"/>
 
             <!-- Torn Pages -->
-            <Image Grid.Row="1" Grid.Column="6" Source="./Resources/Images/pages_0.png"
-                   Height="40" Width="40" Tag="TornPages"
-                   MouseLeftButtonDown="CountUp" MouseRightButtonDown="CountDown"/>
-            <TextBlock Grid.Row="1" Grid.Column="6" Text="0" HorizontalAlignment="Right"
-                       Foreground="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Margin="0,0,5,0" x:Name="tornpages" VerticalAlignment="Bottom">
-                <TextBlock.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.25"/>
-                </TextBlock.Background>
-            </TextBlock>
+            <Image Grid.Row="1" Grid.Column="7" Source="./Resources/Images/pages_0.png" 
+                   Style="{StaticResource Counter}" Tag="TornPages" ToolTip="Torn Pages"/>
+            <TextBlock Grid.Row="1" Grid.Column="7" Text="0" Style="{StaticResource TextCounter}" x:Name="tornpages"/>
+
 
             <!-- Row 2 -->
 
             <!-- Roxas -->
             <Image Grid.Row="2" Grid.Column="1" Source="./Resources/Images/Roxas_0.png"
-                   Height="40" Width="40" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   ToolTip="Roxas"/>
 
             <!-- Twilight Town -->
             <Image Grid.Row="2" Grid.Column="2" Source="./Resources/Images/Twilight Town.png"
-                   Height="40" Width="40" Tag="TwilightTown" 
-                   MouseLeftButtonDown="CountUp" MouseRightButtonDown="CountDown"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="0" HorizontalAlignment="Right"
-                       Foreground="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Margin="0,0,5,0" x:Name="TT" VerticalAlignment="Bottom">
-                <TextBlock.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.25"/>
-                </TextBlock.Background>
-            </TextBlock>
-            
+                   Tag="TwilightTown" Style="{StaticResource Counter}" ToolTip="Twilight Town"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="0" Style="{StaticResource TextCounter}" x:Name="TT"/>
+
             <!-- Hollow Bastion -->
             <Image Grid.Row="2" Grid.Column="3" Source="./Resources/Images/Hollow Bastion.png"
-                   Height="40" Width="40" Tag="HollowBastion" 
-                   MouseLeftButtonDown="CountUp" MouseRightButtonDown="CountDown"/>
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="0" HorizontalAlignment="Right"
-                       Foreground="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Margin="0,0,5,0" x:Name="HB" VerticalAlignment="Bottom">
-                <TextBlock.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.25"/>
-                </TextBlock.Background>
-            </TextBlock>
+                   Tag="HollowBastion" Style="{StaticResource Counter}" ToolTip="Hollow Bastion"/>
+            <TextBlock Grid.Row="2" Grid.Column="3" Text="0" Style="{StaticResource TextCounter}" x:Name="HB"/>
 
             <!-- Disney Castle -->
             <Image Grid.Row="2" Grid.Column="4" Source="./Resources/Images/Disney Castle.png"
-                   Height="40" Width="40" Tag="DisneyCastle"/>
+                   Tag="DisneyCastle" Style="{StaticResource StillImage}" ToolTip="Disney Castle"/>
             <Image Grid.Row="2" Grid.Column="4" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   Style="{StaticResource Keyhole}"/>
 
             <!-- Timeless River -->
             <Image Grid.Row="2" Grid.Column="5" Source="./Resources/Images/Timeless River.png"
-                   Height="40" Width="40" Tag="TimelessRiver"/>
+                   Tag="TimelessRiver" Style="{StaticResource StillImage}" ToolTip="Timeless River"/>
             <Image Grid.Row="2" Grid.Column="5" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   Style="{StaticResource Keyhole}"/>
 
             <!-- Atlantica -->
             <Image Grid.Row="2" Grid.Column="6" Source="./Resources/Images/Atlantica.png"
-                   Height="40" Width="40" Tag="Atlantica"
-                   MouseLeftButtonDown="CountUp" MouseRightButtonDown="CountDown"/>
-            <TextBlock Grid.Row="2" Grid.Column="6" Text="0" HorizontalAlignment="Right"
-                       Foreground="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Margin="0,0,5,0" x:Name="AT" VerticalAlignment="Bottom">
-                <TextBlock.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.25"/>
-                </TextBlock.Background>
-            </TextBlock>
+                   Tag="Atlantica" Style="{StaticResource Counter}" ToolTip="Atlantica"/>
+            <TextBlock Grid.Row="2" Grid.Column="6" Text="0" Style="{StaticResource TextCounter}" x:Name="AT" />
 
             <!-- 100 Acre Wood -->
             <Image Grid.Row="2" Grid.Column="7" Source="./Resources/Images/100 Acre Wood.png"
-                   Height="40" Width="40" Tag="100AcreWood"
-                   MouseLeftButtonDown="CountUp" MouseRightButtonDown="CountDown"/>
-            <TextBlock Grid.Row="2" Grid.Column="7" Text="0" HorizontalAlignment="Right"
-                       Foreground="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Margin="0,0,5,0" x:Name="AcreWood" VerticalAlignment="Bottom">
-                <TextBlock.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.25"/>
-                </TextBlock.Background>
-            </TextBlock>
+                   Tag="100AcreWood" Style="{StaticResource Counter}" ToolTip="100 Acre Wood"/>
+            <TextBlock Grid.Row="2" Grid.Column="7" Text="0" Style="{StaticResource TextCounter}" x:Name="AcreWood"/>
 
             <!-- The World That Never Was -->
             <Image Grid.Row="2" Grid.Column="8" Source="./Resources/Images/The World That Never Was.png"
-                   Height="40" Width="40" Tag="TWTNW"/>
+                   Tag="TWTNW" Style="{StaticResource StillImage}" ToolTip="The World That Never Was"/>
             <Image Grid.Row="2" Grid.Column="8" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   Style="{StaticResource Keyhole}"/>
+
 
             <!-- Row 3 -->
 
             <Image Grid.Row="3" Grid.Column="1" Source="./Resources/Images/The Land of Dragons.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Land of Dragons"/>
             <Image Grid.Row="3" Grid.Column="1" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="1" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="2" Source="./Resources/Images/Beast's Castle.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Beast's Castle"/>
             <Image Grid.Row="3" Grid.Column="2" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="2" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="3" Source="./Resources/Images/Olympus Coliseum.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Olympus Coliseum"/>
             <Image Grid.Row="3" Grid.Column="3" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="3" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="4" Source="./Resources/Images/Port Royal.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Port Royal"/>
             <Image Grid.Row="3" Grid.Column="4" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="4" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="5" Source="./Resources/Images/Agrabah.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Agrabah"/>
             <Image Grid.Row="3" Grid.Column="5" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="5" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="6" Source="./Resources/Images/Halloween Town.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Halloween Town"/>
             <Image Grid.Row="3" Grid.Column="6" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="6" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="7" Source="./Resources/Images/Pride Lands.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Pride Lands"/>
             <Image Grid.Row="3" Grid.Column="7" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="7" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
             <Image Grid.Row="3" Grid.Column="8" Source="./Resources/Images/Space Paranoids.png"
-                   Height="40" Width="40"/>
+                   Style="{StaticResource StillImage}" ToolTip="Space Paranoids"/>
             <Image Grid.Row="3" Grid.Column="8" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="0,0,17,0"/>
+                   Style="{StaticResource Keyhole}" Margin="0,0,17,0"/>
             <Image Grid.Row="3" Grid.Column="8" Source="./Resources/Images/keyhole_0.png"
-                   Height="12" Width="12" Tag="keyhole" VerticalAlignment="Bottom" 
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem" Margin="17,0,0,0"/>
+                   Style="{StaticResource Keyhole}" Margin="17,0,0,0"/>
 
 
             <!-- Row 4 -->
 
+            <!-- Drive Forms -->
             <Image Grid.Row="4" Grid.Column="1" Source="./Resources/Images/formvalor_0.png"
-                   Height="40" Width="40" Tag="formValor"
-                   MouseLeftButtonDown="DriveLevelUp" MouseRightButtonDown="DriveLevelDown"/>
+                   Tag="formValor" Style="{StaticResource DriveIamge}" ToolTip="Valor Form"/>
             <TextBlock Grid.Row="4" Grid.Column="1" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="LevelValor"/>
-            
+
             <Image Grid.Row="4" Grid.Column="2" Source="./Resources/Images/formwisdom_0.png"
-                   Height="40" Width="40" Tag="formWisdom"
-                   MouseLeftButtonDown="DriveLevelUp" MouseRightButtonDown="DriveLevelDown"/>
+                   Tag="formWisdom" Style="{StaticResource DriveIamge}" ToolTip="Wisdom Form"/>
             <TextBlock Grid.Row="4" Grid.Column="2" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="LevelWisdom"/>
 
             <Image Grid.Row="4" Grid.Column="3" Source="./Resources/Images/formlimit_0.png"
-                   Height="40" Width="40" Tag="formLimit"
-                   MouseLeftButtonDown="DriveLevelUp" MouseRightButtonDown="DriveLevelDown"/>
+                   Tag="formLimit" Style="{StaticResource DriveIamge}" ToolTip="Limit Form"/>
             <TextBlock Grid.Row="4" Grid.Column="3" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="LevelLimit"/>
 
             <Image Grid.Row="4" Grid.Column="4" Source="./Resources/Images/formmaster_0.png"
-                   Height="40" Width="40" Tag="formMaster"
-                   MouseLeftButtonDown="DriveLevelUp" MouseRightButtonDown="DriveLevelDown"/>
+                   Tag="formMaster" Style="{StaticResource DriveIamge}" ToolTip="Master Form"/>
             <TextBlock Grid.Row="4" Grid.Column="4" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="LevelMaster"/>
 
             <Image Grid.Row="4" Grid.Column="5" Source="./Resources/Images/formfinal_0.png"
-                   Height="40" Width="40" Tag="formFinal"
-                   MouseLeftButtonDown="DriveLevelUp" MouseRightButtonDown="DriveLevelDown"/>
+                   Tag="formFinal" Style="{StaticResource DriveIamge}" ToolTip="Final Form"/>
             <TextBlock Grid.Row="4" Grid.Column="5" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="LevelFinal"/>
 
+            <!-- CoR -->
             <Image Grid.Row="4" Grid.Column="6" Source="./Resources/Images/cor.png"
-                   Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                   Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Center"
+                   Style="{StaticResource StillImage}" ToolTip="Cavern of Remembrance"/>
             <Image Grid.Row="4" Grid.Column="6" Source="./Resources/Images/mickey_0.png"
-                   Height="20" Width="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,2"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   Height="20" Width="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
-            <Image Grid.Row="4" Grid.Column="7" Source="./Resources/Images/trophy_pain.png"
-                   Height="40" Width="40" x:Name="PainCup"/>
-            <Image Grid.Row="4" Grid.Column="7" Source="./Resources/Images/mickey_0.png"
-                   Height="15" Width="15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,2"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+            <!-- Summons -->
+            <Image Grid.Row="4" Grid.Column="7" Source="./Resources/Images/charmbaseball_0.png"
+                   x:Name="summon1" ToolTip="Baseball Charm"/>
 
-            <Image Grid.Row="4" Grid.Column="8" Source="./Resources/Images/trophy_cerb.png"
-                   Height="40" Width="40" x:Name="CerbCup"/>
-            <Image Grid.Row="4" Grid.Column="8" Source="./Resources/Images/mickey_0.png"
-                   Height="15" Width="15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,2"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+            <Image Grid.Row="4" Grid.Column="8" Source="./Resources/Images/charmlamp_0.png"
+                   x:Name="summon2" ToolTip="Lamp Charm"/>
 
 
             <!-- Row 5 -->
 
+            <!-- Magic -->
             <Image Grid.Row="5" Grid.Column="1" Source="./Resources/Images/magicfire_0.png"
-                   Height="40" Width="40" Tag="Fire"  x:Name="FireSpell"
-                   MouseLeftButtonDown="CycleMagicLeftClick" MouseRightButtonDown="CycleMagicRightClick" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                   Tag="Fire"  x:Name="FireSpell" Style="{StaticResource MagicImage}"/>
             <TextBlock Grid.Row="5" Grid.Column="1" Text="Fire" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="Fire"/>
 
             <Image Grid.Row="5" Grid.Column="2" Source="./Resources/Images/magicblizzard_0.png"
-                   Height="40" Width="40" Tag="Blizzard" x:Name="BlizzardSpell"
-                   MouseLeftButtonDown="CycleMagicLeftClick" MouseRightButtonDown="CycleMagicRightClick" Margin="0,0,0,10"/>
+                   Tag="Blizzard" x:Name="BlizzardSpell" Style="{StaticResource MagicImage}" />
             <TextBlock Grid.Row="5" Grid.Column="2" Text="Blizzard" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="Blizzard"/>
 
             <Image Grid.Row="5" Grid.Column="3" Source="./Resources/Images/magicthunder_0.png"
-                   Height="40" Width="40" Tag="Thunder" x:Name="ThunderSpell"
-                   MouseLeftButtonDown="CycleMagicLeftClick" MouseRightButtonDown="CycleMagicRightClick" Margin="0,0,0,10"/>
+                   Tag="Thunder" x:Name="ThunderSpell" Style="{StaticResource MagicImage}"/>
             <TextBlock Grid.Row="5" Grid.Column="3" Text="Thunder" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="Thunder"/>
 
             <Image Grid.Row="5" Grid.Column="4" Source="./Resources/Images/magiccure_0.png"
-                   Height="40" Width="40" Tag="Cure" x:Name="CureSpell"
-                   MouseLeftButtonDown="CycleMagicLeftClick" MouseRightButtonDown="CycleMagicRightClick" Margin="0,0,0,10"/>
+                   Tag="Cure" x:Name="CureSpell" Style="{StaticResource MagicImage}"/>
             <TextBlock Grid.Row="5" Grid.Column="4" Text="Cure" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="Cure"/>
 
-            <Image Grid.Row="5" Grid.Column="5" Source="./Resources/Images/magicorb_0.png"
-                   Height="40" Width="40" Tag="Reflect" x:Name="ReflectSpell"
-                   MouseLeftButtonDown="CycleMagicLeftClick" MouseRightButtonDown="CycleMagicRightClick" Margin="0,0,0,10"/>
+            <Image Grid.Row="5" Grid.Column="5" Source="./Resources/Images/magicreflect_0.png"
+                   Tag="Reflect" x:Name="ReflectSpell" Style="{StaticResource MagicImage}" />
             <TextBlock Grid.Row="5" Grid.Column="5" Text="Reflect" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="Reflect"/>
 
-            <Image Grid.Row="5" Grid.Column="6" Source="./Resources/Images/magicorb_0.png"
-                   Height="40" Width="40" Tag="Magnet" x:Name="MagnetSpell"
-                   MouseLeftButtonDown="CycleMagicLeftClick" MouseRightButtonDown="CycleMagicRightClick" Margin="0,0,0,10"/>
+            <Image Grid.Row="5" Grid.Column="6" Source="./Resources/Images/magicmagnet_0.png"
+                   Tag="Magnet" x:Name="MagnetSpell" Style="{StaticResource MagicImage}" />
             <TextBlock Grid.Row="5" Grid.Column="6" Text="Magnet" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                        Foreground="White" FontFamily="Calibri" FontSize="9"
                        x:Name="Magnet"/>
 
-            <Image Grid.Row="5" Grid.Column="7" Source="./Resources/Images/trophy_titan.png"
-                   Height="40" Width="40" x:Name="TitanCup"/>
-            <Image Grid.Row="5" Grid.Column="7" Source="./Resources/Images/mickey_0.png"
+            <!-- Summons -->
+            <Image Grid.Row="5" Grid.Column="7" Source="./Resources/Images/charmukulele_0.png"
+                   x:Name="summon3" ToolTip="Ukulele Charm"/>
+
+            <Image Grid.Row="5" Grid.Column="8" Source="./Resources/Images/charmfeather_0.png"
+                   x:Name="summon4" ToolTip="Feather Charm"/>
+
+
+            <!-- Row 6 -->
+
+            <!-- Dream Weapon -->
+            <Image Grid.Row="6" Grid.Column="2" Source="./Resources/Images/dream_0.png"
+                   Style="{StaticResource Dream}" x:Name="DreamWeapon" ToolTip="Dream Weapon"/>
+
+            <!-- Cups -->
+            <Image Grid.Row="6" Grid.Column="3" Source="./Resources/Images/cup_goddess.png"
+                   Tag="Cup" Style="{StaticResource Counter}" x:Name="Cup" ToolTip="Olympus Cups"/>
+            <TextBlock Grid.Row="6" Grid.Column="3" Text="0" Style="{StaticResource TextCounter}" x:Name="OCup"/>
+
+            <!-- Chests -->
+            <Image Grid.Row="6" Grid.Column="4" Source="./Resources/Images/chest_1.png" ToolTip="Treasure Chest"
+                   Height="25" Width="25" Style="{StaticResource StillImage}" x:Name="Chest"/>
+            <Image Grid.Row="6" Grid.Column="4" Source="./Resources/Images/mickey_0.png"
                    Height="15" Width="15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,2"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"
+                   x:Name="MickeyChest"/>
 
-            <Image Grid.Row="5" Grid.Column="8" Source="./Resources/Images/trophy_goddess.png"
-                   Height="40" Width="40" x:Name="GoddessCup"/>
-            <Image Grid.Row="5" Grid.Column="8" Source="./Resources/Images/mickey_0.png"
+            <!-- Shroom -->
+            <Image Grid.Row="6" Grid.Column="5" Source="./Resources/Images/mushroom13.png" ToolTip="Mushroom XIII"
+                   Height="30" Width="30" x:Name="Shroom13" Style="{StaticResource StillImage}"/>
+            <Image Grid.Row="6" Grid.Column="5" Source="./Resources/Images/mickey_0.png"
                    Height="15" Width="15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,2"
-                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"/>
+                   MouseLeftButtonDown="CheckItem" MouseRightButtonDown="UncheckItem"
+                   x:Name="MickeyShroom"/>
 
-            <Frame x:Name="Main" Grid.RowSpan="8" Grid.ColumnSpan="10"/>
+            <!-- Sephiroth -->
+            <Image Grid.Row="6" Grid.Column="6" Source="./Resources/Images/sephiroth_0.png"
+                   Height="25" Width="25" Margin="5,0,0,0" x:Name="Sephiroth" ToolTip="Sephiroth"/>
 
-
-
-
+            <!-- Terra -->
+            <Image Grid.Row="6" Grid.Column="7" Source="./Resources/Images/terra_0.png"
+                   Height="30" Width="30" Margin="0,0,0,5" x:Name="Terra" ToolTip="Lingering Will"/>
 
 
         </Grid>
 
     </DockPanel>
+
 
 </Window>

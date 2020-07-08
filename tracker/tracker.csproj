@@ -14,6 +14,25 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\cejaendn\Desktop\KH2FM Tracker\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>KH2FMTracker</ProductName>
+    <PublisherName>Jsmartee</PublisherName>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.3</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +52,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8E0A55B757D80B9213934CB0D520DBBBCE9730D9</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>tracker_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ASDataOrg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +97,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ASDataOrg.xaml.cs">
+      <DependentUpon>ASDataOrg.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -90,7 +128,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\Images\Thumbs.db" />
+    <None Include="tracker_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -110,11 +148,6 @@
     <Resource Include="Resources\Images\formmaster_0.png" />
     <Resource Include="Resources\Images\formvalor_0.png" />
     <Resource Include="Resources\Images\formwisdom_0.png" />
-    <Resource Include="Resources\Images\magicblizzard_0.png" />
-    <Resource Include="Resources\Images\magiccure_0.png" />
-    <Resource Include="Resources\Images\magicfire_0.png" />
-    <Resource Include="Resources\Images\magicorb_0.png" />
-    <Resource Include="Resources\Images\magicthunder_0.png" />
     <Resource Include="Resources\Images\pages_0.png" />
     <Resource Include="Resources\Images\ProofConnection_0.png" />
     <Resource Include="Resources\Images\ProofNonexistence_0.png" />
@@ -130,11 +163,6 @@
     <Resource Include="Resources\Images\Halloween Town.png" />
     <Resource Include="Resources\Images\Hollow Bastion.png" />
     <Resource Include="Resources\Images\keyhole_1.png" />
-    <Resource Include="Resources\Images\magicblizzard_1.png" />
-    <Resource Include="Resources\Images\magiccure_1.png" />
-    <Resource Include="Resources\Images\magicfire_1.png" />
-    <Resource Include="Resources\Images\magicorb_1.png" />
-    <Resource Include="Resources\Images\magicthunder_1.png" />
     <Resource Include="Resources\Images\Olympus Coliseum.png" />
     <Resource Include="Resources\Images\Port Royal.png" />
     <Resource Include="Resources\Images\Pride Lands.png" />
@@ -173,6 +201,68 @@
   <ItemGroup>
     <Resource Include="Resources\Images\trophy_titan.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\charmbaseball_0.png" />
+    <Resource Include="Resources\Images\charmbaseball_1.png" />
+    <Resource Include="Resources\Images\charmfeather_0.png" />
+    <Resource Include="Resources\Images\charmfeather_1.png" />
+    <Resource Include="Resources\Images\charmlamp_0.png" />
+    <Resource Include="Resources\Images\charmlamp_1.png" />
+    <Resource Include="Resources\Images\charmukulele_0.png" />
+    <Resource Include="Resources\Images\charmukulele_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dream_0.png" />
+    <Resource Include="Resources\Images\dream_1.png" />
+    <Resource Include="Resources\Images\dream_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\cup_goddess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\chest_1.png" />
+    <Resource Include="Resources\Images\sephiroth_0.png" />
+    <Resource Include="Resources\Images\terra_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\mushroom13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\sephiroth_1.png" />
+    <Resource Include="Resources\Images\terra_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\magicblizzard_0.png" />
+    <Resource Include="Resources\Images\magicblizzard_1.png" />
+    <Resource Include="Resources\Images\magiccure_0.png" />
+    <Resource Include="Resources\Images\magiccure_1.png" />
+    <Resource Include="Resources\Images\magicfire_0.png" />
+    <Resource Include="Resources\Images\magicfire_1.png" />
+    <Resource Include="Resources\Images\magicmagnet_0.png" />
+    <Resource Include="Resources\Images\magicmagnet_1.png" />
+    <Resource Include="Resources\Images\magicreflect_0.png" />
+    <Resource Include="Resources\Images\magicreflect_1.png" />
+    <Resource Include="Resources\Images\magicthunder_0.png" />
+    <Resource Include="Resources\Images\magicthunder_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\trackerimage1.png" />
+    <Resource Include="Resources\Images\trackerimage2.png" />
+    <Resource Include="Resources\Images\trackerimage3.png" />
+    <Resource Include="Resources\Images\trackerimage4.png" />
+    <Resource Include="Resources\Images\trackerimage5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

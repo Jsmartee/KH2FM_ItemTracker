@@ -24,6 +24,19 @@ namespace tracker
         public MainWindow()
         {
             InitializeComponent();
+
+            DreamWeapon.Visibility = Visibility.Hidden;
+            Chest.Visibility = Visibility.Hidden;
+            MickeyChest.Visibility = Visibility.Hidden;
+            Cup.Visibility = Visibility.Hidden;
+            OCup.Visibility = Visibility.Hidden;
+            Shroom13.Visibility = Visibility.Hidden;
+            MickeyShroom.Visibility = Visibility.Hidden;
+            Sephiroth.Visibility = Visibility.Hidden;
+            Terra.Visibility = Visibility.Hidden;
+
+
+
         }
 
         private void MenuReset_Click(object sender, RoutedEventArgs e)
@@ -38,9 +51,49 @@ namespace tracker
             this.Close();
         }
 
+        private void MenuExtended_Click(object sender, RoutedEventArgs e)
+        {
+            if (MenuExtended.IsChecked == false)
+            {
+                MenuExtended.IsChecked = true;
+
+                DreamWeapon.Visibility = Visibility.Visible;
+                Chest.Visibility = Visibility.Visible;
+                MickeyChest.Visibility = Visibility.Visible;
+                Cup.Visibility = Visibility.Visible;
+                OCup.Visibility = Visibility.Visible;
+                Shroom13.Visibility = Visibility.Visible;
+                MickeyShroom.Visibility = Visibility.Visible;
+                Sephiroth.Visibility = Visibility.Visible;
+                Terra.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MenuExtended.IsChecked = false;
+
+                DreamWeapon.Visibility = Visibility.Hidden;
+                Chest.Visibility = Visibility.Hidden;
+                MickeyChest.Visibility = Visibility.Hidden;
+                Cup.Visibility = Visibility.Hidden;
+                OCup.Visibility = Visibility.Hidden;
+                Shroom13.Visibility = Visibility.Hidden;
+                MickeyShroom.Visibility = Visibility.Hidden;
+                Sephiroth.Visibility = Visibility.Hidden;
+                Terra.Visibility = Visibility.Hidden;
+
+            }
+        }
+
+        private void MenuASData_Click(object sender, RoutedEventArgs e)
+        {
+            ASDataOrg window2 = new ASDataOrg();
+            window2.Show();
+
+        }
+
         private void MenuAbout_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Author: Jsmartee" + "\n" + "Images from khwiki.com and khinsider.com", "KH2FM Item Tracker v1.0");
+            MessageBox.Show("Author: Jsmartee" + "\n" + "Images from khwiki.com and khinsider.com", "KH2FM Item Tracker v2.0");
         }
 
         //Highlight item when left click
@@ -71,7 +124,7 @@ namespace tracker
             Image pic = (Image)sender;
             int index = crown;
 
-            if(index == 3)
+            if (index == 3)
             {
                 return;
             }
@@ -114,11 +167,11 @@ namespace tracker
             Image pic = (Image)sender;
             int index = 0;
 
-            switch(pic.Tag.ToString())
+            switch (pic.Tag.ToString())
             {
                 case "Fire":
                     index = fireIndex;
-                    switch(index)
+                    switch (index)
                     {
                         case 0:
                             CheckItem(pic, e);
@@ -402,6 +455,7 @@ namespace tracker
         int wood = 0;
         int twilight = 0;
         int garden = 0;
+        int cups = 0;
         //Method to add to counters
         private void CountUp(object sender, MouseButtonEventArgs e)
         {
@@ -442,6 +496,12 @@ namespace tracker
                     max = 3;
                     break;
 
+                case "Cup":
+                    index = cups;
+                    text = OCup;
+                    max = 4;
+                    break;
+
             }
 
             if (index == 0 && pic.Tag.ToString().Contains("TornPages"))
@@ -449,15 +509,29 @@ namespace tracker
                 CheckItem(pic, e);
             }
 
-            if(index == max)
+            if (index == max)
             {
                 return;
             }
 
-            switch(max)
+            switch (max)
             {
                 case 5:
-                    if(index == 4)
+                    if (index == 4)
+                    {
+                        index++;
+                        text.Text = index.ToString();
+                        text.Foreground = new SolidColorBrush(Color.FromRgb(0, 204, 0));
+                    }
+                    else
+                    {
+                        index++;
+                        text.Text = index.ToString();
+                    }
+                    break;
+
+                case 4:
+                    if (index == 3)
                     {
                         index++;
                         text.Text = index.ToString();
@@ -485,7 +559,7 @@ namespace tracker
                     break;
             }
 
-            switch(pic.Tag.ToString())
+            switch (pic.Tag.ToString())
             {
                 case "TornPages":
                     pages++;
@@ -505,6 +579,10 @@ namespace tracker
 
                 case "HollowBastion":
                     garden++;
+                    break;
+
+                case "Cup":
+                    cups++;
                     break;
             }
 
@@ -554,6 +632,12 @@ namespace tracker
                     max = 3;
                     break;
 
+                case "Cup":
+                    index = cups;
+                    text = OCup;
+                    max = 4;
+                    break;
+
             }
 
             if (index == 1 && pic.Tag.ToString().Contains("TornPages"))
@@ -566,7 +650,7 @@ namespace tracker
                 return;
             }
 
-            if(index == max)
+            if (index == max)
             {
                 text.Foreground = new SolidColorBrush(Colors.White);
             }
@@ -595,6 +679,10 @@ namespace tracker
                 case "HollowBastion":
                     garden--;
                     break;
+
+                case "Cup":
+                    cups--;
+                    break;
             }
 
         }
@@ -612,7 +700,7 @@ namespace tracker
             TextBlock text = new TextBlock();
             int index = 0;
 
-            switch(pic.Tag.ToString())
+            switch (pic.Tag.ToString())
             {
                 case "formValor":
                     text = LevelValor;
@@ -640,12 +728,12 @@ namespace tracker
                     break;
             }
 
-            switch(index)
+            switch (index)
             {
-                case 6:
+                case 7:
                     return;
 
-                case 5:
+                case 6:
                     index++;
                     text.Text = "Level " + index.ToString();
                     text.Foreground = new SolidColorBrush(Color.FromRgb(0, 204, 0));
@@ -729,7 +817,7 @@ namespace tracker
                 case 0:
                     return;
 
-                case 6:
+                case 7:
                     index--;
                     text.Text = "Level " + index.ToString();
                     text.Foreground = new SolidColorBrush(Colors.White);
@@ -773,6 +861,45 @@ namespace tracker
 
         }
 
-        
+
+        int weapon = 0;
+        //Cycle through progressive crowns on left click
+        private void DreamLeftClick(object sender, MouseButtonEventArgs e)
+        {
+            Image pic = (Image)sender;
+            int index = weapon;
+
+            if (index == 2)
+            {
+                return;
+            }
+
+            index++;
+            String[] reference = pic.Source.ToString().Split('_');
+            BitmapImage image = new BitmapImage(new Uri(reference[0] + "_" + index + ".png", UriKind.Absolute));
+            pic.Source = image;
+            weapon++;
+
+        }
+
+        //Cycle backwards through progressive crowns on right click
+        private void DreamRightClick(object sender, MouseButtonEventArgs e)
+        {
+            Image pic = (Image)sender;
+            int index = weapon;
+
+            if (index == 0)
+            {
+                return;
+            }
+
+            index--;
+            String[] reference = pic.Source.ToString().Split('_');
+            BitmapImage image = new BitmapImage(new Uri(reference[0] + "_" + index + ".png", UriKind.Absolute));
+            pic.Source = image;
+            weapon--;
+        }
+
+
     }
 }
