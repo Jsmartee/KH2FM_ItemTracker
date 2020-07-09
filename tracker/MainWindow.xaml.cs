@@ -93,7 +93,7 @@ namespace tracker
 
         private void MenuAbout_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Author: Jsmartee" + "\n" + "Images from khwiki.com and khinsider.com", "KH2FM Item Tracker v2.0");
+            MessageBox.Show("Author: Jsmartee" + "\n" + "Images from khwiki.com and khinsider.com", "KH2FM Item Tracker v2.1.1");
         }
 
         //Highlight item when left click
